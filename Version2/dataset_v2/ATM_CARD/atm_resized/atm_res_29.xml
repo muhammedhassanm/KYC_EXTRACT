@@ -1,0 +1,26 @@
+<annotation>
+	<folder>atm_resized</folder>
+	<filename>atm_res_29.jpg</filename>
+	<path>E:\Desktop\KYC_EXTRACT\Version2\dataset_v2\ATM_CARD\atm_resized\atm_res_29.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>300</width>
+		<height>300</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>atm</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>61</xmin>
+			<ymin>93</ymin>
+			<xmax>252</xmax>
+			<ymax>189</ymax>
+		</bndbox>
+	</object>
+</annotation>

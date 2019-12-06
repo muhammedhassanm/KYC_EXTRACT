@@ -1,0 +1,15 @@
+office_id
+business_card
+atm
+adhar_front
+adhar_back
+adhar_no
+adhar_name
+adhar_dob
+adhar_gender
+adhar_address
+pan_name
+pan_no
+pan_dob
+pan
+license

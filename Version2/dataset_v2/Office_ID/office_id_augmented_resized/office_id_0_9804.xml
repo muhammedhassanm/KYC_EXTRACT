@@ -1,0 +1,26 @@
+<annotation>
+	<folder>office_id_augmented_resized</folder>
+	<filename>office_id_0_9804.jpg</filename>
+	<path>E:\Desktop\KYC_EXTRACT\Version2\dataset_v2\Office_ID\office_id_augmented_resized\office_id_0_9804.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>300</width>
+		<height>300</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>office_id</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>70</xmin>
+			<ymin>39</ymin>
+			<xmax>227</xmax>
+			<ymax>226</ymax>
+		</bndbox>
+	</object>
+</annotation>

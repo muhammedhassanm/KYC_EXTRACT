@@ -1,0 +1,26 @@
+<annotation>
+	<folder>augment_business_card_resized</folder>
+	<filename>business_card_0_6797.jpg</filename>
+	<path>E:\Desktop\KYC_EXTRACT\Version2\dataset_v2\Business-Card\augment_business_card_resized\business_card_0_6797.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>300</width>
+		<height>300</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>business_card</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>29</xmin>
+			<ymin>107</ymin>
+			<xmax>264</xmax>
+			<ymax>224</ymax>
+		</bndbox>
+	</object>
+</annotation>
