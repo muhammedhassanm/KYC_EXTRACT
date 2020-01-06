@@ -34,7 +34,7 @@ def show_image(IMAGE):
     plt.imshow(IMAGE, aspect = 'auto')
     plt.show()
 
-interpreter = tf.lite.Interpreter(model_path='C:/Users/100119/Desktop/model_tflite_21_11_2019 _kyc_latest.tflite')
+interpreter = tf.lite.Interpreter(model_path='E:/KYC_EXTRACT/Version 3/model_tflite/model_tflite_21_11_2019 _kyc_V3.tflite')
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
@@ -46,7 +46,7 @@ CLASSES = ["cow", "cow_face", "unblurred_muzzle", "cow_eye", "cow_eye",
 
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
-image ='C:/Users/100119/Pictures/Saved Pictures/pdf_img_2/yildiz_iicai05_13.jpg'
+image ='E:/KYC_EXTRACT/Version 3/test_images/3.jpg'
 frame = cv2.imread(image)
 (h, w) = frame.shape[:2]
 cv2.imwrite('aa.jpg',frame)
@@ -68,12 +68,13 @@ Result_Data['y2'] = (Result_Data['y2']*h).astype(int)
 count =1
 for index,detection  in Result_Data.iterrows():
     confidence = int(detection['score']) 
+    print(confidence)
     if confidence >10:
             idx = int(detection['class'])
             (startX, startY, endX, endY) = detection['x1'].astype("int"),detection['y1'].astype("int"),detection['x2'].astype("int"),detection['y2'].astype("int")
             crop=frame[startY:endY,startX:endX]
             crop = cv2.resize(crop,None,fx=2.5,fy =2.5)
-            cv2.imwrite('E:/Desktop/KYC_EXTRACT/Version1/test-images/' +str(count)+'.jpg',crop)
+            cv2.imwrite(str(count)+'.jpg',crop)
             count+=1
 #                gray = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
 #                retval, thresh_gray = cv2.threshold(g, thresh=75, maxval=255,type=cv2.THRESH_BINARY_INV)
