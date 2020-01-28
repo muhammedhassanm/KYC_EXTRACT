@@ -28,7 +28,7 @@ def show_image(IMAGE):
     plt.show()
 
 # Load TFLite model and allocate tensors.
-interpreter = tf.lite.Interpreter(model_path='E:/KYC_EXTRACT/Version2/model_v2/kyc_detection_model_v2__30_10_2019_tflite.tflite')
+interpreter = tf.lite.Interpreter(model_path='E:/KYC_EXTRACT/Version 3/model_tflite/model_tflite_21_11_2019 _kyc_V3.tflite')
 # interpreter = tf.lite.Interpreter(model_path='adhar_pan_license_17-10-19.tflite')
 interpreter.allocate_tensors()
 
@@ -41,14 +41,18 @@ input_shape = input_details[0]['shape']
 
 #CLASSES = ['name','dob','gender','no','front','address','back']
 #CLASSES =['permit_no','kitas_front']
+#CLASSES = ["cow", "cow_face", "unblurred_muzzle", "cow_eye", "cow_eye",
+#     "cow_ear", "cow_ear", "cow_eartag", "laptop", "mobile", "cup", "chair",
+#     "pen", "mouse", "monitor", "book", "bottle", "key_board",
+#     "tablet", "person", "eye_glass","cpu","blurred_muzzle", "adhar_front", "adhar_back", "pan", "license","atm","business_card","office_id"]
+#CLASSES =['pan','pan_no','pan_name','pan_dob']
 CLASSES = ["cow", "cow_face", "unblurred_muzzle", "cow_eye", "cow_eye",
      "cow_ear", "cow_ear", "cow_eartag", "laptop", "mobile", "cup", "chair",
      "pen", "mouse", "monitor", "book", "bottle", "key_board",
-     "tablet", "person", "eye_glass","cpu","blurred_muzzle", "adhar_front", "adhar_back", "pan", "license","atm","business_card","office_id"]
-#CLASSES =['pan','pan_no','pan_name','pan_dob']
+     "tablet", "person", "eye_glass","cpu","blurred_muzzle", "adhar_front", "adhar_back", "pan", "license","atm","business_card","office_id","paper"]
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
-image ='C:/Users/100119/Desktop/Doc_1572262036073_naaa.jpeg'
+image ='E:/KYC_EXTRACT/Version 3/test_images/thumbnail_Image3.jpg'
 frame = cv2.imread(image)
 (h, w) = frame.shape[:2]
 cv2.imwrite('aa.jpg',frame)
