@@ -87,7 +87,6 @@ for index,detection  in Result_Data.iterrows():
                
                 print(int(detection['class']))
                 text= pytesseract.image_to_string(crop,config = '--psm 6')
-                print(text)  
             # draw the prediction on the frame
             label = "{}: {:.2f}%".format(CLASSES[idx],confidence)
             cv2.rectangle(frame, (startX, startY), (endX, endY),COLORS[idx], 3)
