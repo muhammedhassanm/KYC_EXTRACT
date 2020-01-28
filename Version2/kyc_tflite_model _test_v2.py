@@ -28,7 +28,7 @@ def show_image(IMAGE):
     plt.show()
 
 # Load TFLite model and allocate tensors.
-interpreter = tf.lite.Interpreter(model_path='E:/KYC_EXTRACT/Version 3/model_tflite/model_tflite_21_11_2019 _kyc_V3.tflite')
+interpreter = tf.lite.Interpreter(model_path='E:/KYC_EXTRACT/Version 3/model_tflite/aadhar_27_9_2019__model_tflite.tflite')
 # interpreter = tf.lite.Interpreter(model_path='adhar_pan_license_17-10-19.tflite')
 interpreter.allocate_tensors()
 
@@ -39,17 +39,16 @@ output_details = interpreter.get_output_details()
 # Test model on random input data.
 input_shape = input_details[0]['shape']
 
-#CLASSES = ['name','dob','gender','no','front','address','back']
-#CLASSES =['permit_no','kitas_front']
+CLASSES = ['name','dob','gender','no','front','address','back']
 #CLASSES = ["cow", "cow_face", "unblurred_muzzle", "cow_eye", "cow_eye",
 #     "cow_ear", "cow_ear", "cow_eartag", "laptop", "mobile", "cup", "chair",
 #     "pen", "mouse", "monitor", "book", "bottle", "key_board",
 #     "tablet", "person", "eye_glass","cpu","blurred_muzzle", "adhar_front", "adhar_back", "pan", "license","atm","business_card","office_id"]
 #CLASSES =['pan','pan_no','pan_name','pan_dob']
-CLASSES = ["cow", "cow_face", "unblurred_muzzle", "cow_eye", "cow_eye",
-     "cow_ear", "cow_ear", "cow_eartag", "laptop", "mobile", "cup", "chair",
-     "pen", "mouse", "monitor", "book", "bottle", "key_board",
-     "tablet", "person", "eye_glass","cpu","blurred_muzzle", "adhar_front", "adhar_back", "pan", "license","atm","business_card","office_id","paper"]
+#CLASSES = ["cow", "cow_face", "unblurred_muzzle", "cow_eye", "cow_eye",
+#     "cow_ear", "cow_ear", "cow_eartag", "laptop", "mobile", "cup", "chair",
+#     "pen", "mouse", "monitor", "book", "bottle", "key_board",
+#     "tablet", "person", "eye_glass","cpu","blurred_muzzle", "adhar_front", "adhar_back", "pan", "license","atm","business_card","office_id","paper"]
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
 image ='E:/KYC_EXTRACT/Version 3/test_images/thumbnail_Image3.jpg'
@@ -82,18 +81,13 @@ for index,detection  in Result_Data.iterrows():
     if confidence >10:
             idx = int(detection['class'])
             (startX, startY, endX, endY) = detection['x1'].astype("int"),detection['y1'].astype("int"),detection['x2'].astype("int"),detection['y2'].astype("int")
-            crop=frame[startY:endY,startX:endX]
-#            crop = cv2.resize(crop,(600,600),fx=2.5,fy =2.5)
-            cv2.imwrite('E:/Desktop/' +str(count)+'.jpg',crop)
+            crop=frame[startY:endY+h,startX:endX+w]
             
-
             if int(detection['class']) != 0:
                
                 print(int(detection['class']))
                 text= pytesseract.image_to_string(crop,config = '--psm 6')
                 print(text)  
-            cv2.imshow('crop',crop)
-            cv2.waitKey(0)
             # draw the prediction on the frame
             label = "{}: {:.2f}%".format(CLASSES[idx],confidence)
             cv2.rectangle(frame, (startX, startY), (endX, endY),COLORS[idx], 3)
