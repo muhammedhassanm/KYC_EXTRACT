@@ -46,7 +46,7 @@ CLASSES = ["cow", "cow_face", "unblurred_muzzle", "cow_eye", "cow_eye",
 
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
-image ='E:/KYC_EXTRACT/Version 3/test_images/3.jpg'
+image ='E:/KYC_EXTRACT/Version 3/test_images/thumbnail_Image3.jpg'
 frame = cv2.imread(image)
 (h, w) = frame.shape[:2]
 cv2.imwrite('aa.jpg',frame)
@@ -68,7 +68,6 @@ Result_Data['y2'] = (Result_Data['y2']*h).astype(int)
 count =1
 for index,detection  in Result_Data.iterrows():
     confidence = int(detection['score']) 
-    print(confidence)
     if confidence >10:
             idx = int(detection['class'])
             (startX, startY, endX, endY) = detection['x1'].astype("int"),detection['y1'].astype("int"),detection['x2'].astype("int"),detection['y2'].astype("int")
@@ -84,16 +83,11 @@ for index,detection  in Result_Data.iterrows():
 #                print(int(detection['class']))
 #                custom_oem_psm_config = '--psm 6'
 #                text= pytesseract.image_to_string(crop,config = custom_oem_psm_config)
-            if int(detection['class']) != 0:
-               
-                print(int(detection['class']))
-               
-                text= pytesseract.image_to_string(crop,config = '--psm 3')
-                
-                print(text)
-            #cv2.imshow('crop',crop)
-            #cv2.waitKey(0)
-            # draw the prediction on the frame
+
+            print(int(detection['class']))
+            text= pytesseract.image_to_string(crop,config = '--psm 3')
+
+
             label = "{}: {:.2f}%".format(CLASSES[idx],confidence)
             cv2.rectangle(frame, (startX, startY), (endX, endY),COLORS[idx], 3)
             y = startY - 15 if startY - 15 > 15 else startY + 15
@@ -101,5 +95,4 @@ for index,detection  in Result_Data.iterrows():
 
 cv2.imshow("Frame", cv2.resize(frame,(400,400)))
 cv2.waitKey(0)
-
 cv2.destroyAllWindows()
