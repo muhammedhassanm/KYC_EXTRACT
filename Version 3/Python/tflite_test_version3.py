@@ -34,7 +34,7 @@ def show_image(IMAGE):
     plt.imshow(IMAGE, aspect = 'auto')
     plt.show()
 
-interpreter = tf.lite.Interpreter(model_path='E:/KYC_EXTRACT/Version 3/model_tflite/model_tflite_21_11_2019 _kyc_V3.tflite')
+interpreter = tf.lite.Interpreter(model_path='E:/KYC_EXTRACT/Version 3/model_tflite/pan_data_extraction_28_10_2019__model_tflite.tflite')
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
@@ -46,7 +46,7 @@ CLASSES = ["cow", "cow_face", "unblurred_muzzle", "cow_eye", "cow_eye",
 
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
-image ='E:/KYC_EXTRACT/Version 3/test_images/thumbnail_Image3.jpg'
+image ='E:/KYC_EXTRACT/Version 3/test_images/1.jpg'
 frame = cv2.imread(image)
 (h, w) = frame.shape[:2]
 cv2.imwrite('aa.jpg',frame)
@@ -73,11 +73,11 @@ for index,detection  in Result_Data.iterrows():
             (startX, startY, endX, endY) = detection['x1'].astype("int"),detection['y1'].astype("int"),detection['x2'].astype("int"),detection['y2'].astype("int")
             crop=frame[startY:endY,startX:endX]
             crop = cv2.resize(crop,None,fx=2.5,fy =2.5)
-            cv2.imwrite(str(count)+'.jpg',crop)
+            cv2.imwrite('E:/KYC_EXTRACT/Version 3/test_images/'+ str(count)+'.jpg',crop)
             count+=1
 #                gray = cv2.cvtColor(crop, cv2.COLOR_BGR2GRAY)
 #                retval, thresh_gray = cv2.threshold(g, thresh=75, maxval=255,type=cv2.THRESH_BINARY_INV)
-            cv2.imshow('crop',crop)
+            cv2.imshow('crop',cv2.resize(crop,(600,600),fx=2.5,fy=2.5))
             cv2.waitKey(0)
 #            if int(detection['class']) != 4 and int(detection['class']) != 6 :
 #                print(int(detection['class']))
