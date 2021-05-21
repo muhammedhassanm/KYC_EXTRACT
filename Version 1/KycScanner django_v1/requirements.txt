@@ -1,7 +1,7 @@
 imutils==0.5.2
 Django==2.1.2
 opencv_python_headless==4.1.1.26
-tensorflow==1.13.1
+tensorflow==2.5.0
 pandas==0.24.2
 Keras==2.0.8
 numpy==1.16.2
